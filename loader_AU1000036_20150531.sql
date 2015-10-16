@@ -2,7 +2,7 @@ set schema 'snomedct';
 
 DO $$
 DECLARE 
-  folder TEXT := 'C:\';
+  folder TEXT := 'C:\SNOMED_CT-AU';
   type TEXT := 'Delta';
   release TEXT := 'AU1000036_20150531';
 BEGIN
