@@ -71,13 +71,13 @@ create table refset_attributevalue(
   CONSTRAINT refset_attributevalue_pkey PRIMARY KEY(id, effectivetime, active)
 ) inherits (refset);
 
+create table refset_simple(
+  CONSTRAINT refset_simple_pkey PRIMARY KEY(id, effectivetime, active)
+) inherits (refset);
+
 create table refset_simplemap(
   maptarget varchar(32) not null,
   CONSTRAINT refset_simplemap_pkey PRIMARY KEY(id, effectivetime, active)
-) inherits (refset);
-
-create table refset_simple(
-  CONSTRAINT refset_simple_pkey PRIMARY KEY(id, effectivetime, active)
 ) inherits (refset);
 
 create table refset_complexmap(
@@ -89,3 +89,14 @@ create table refset_complexmap(
   correlationId bigint not null,
   CONSTRAINT refset_complexmap_pkey PRIMARY KEY(id, effectivetime, active)
 ) inherits (refset);
+
+create table refset_extendedmap{
+  mapGroup integer not null,
+  mapPriority integer not null,
+  mapRule text,
+  mapAdvice text,
+  mapTarget varchar(32),
+  correlationId bigint not null,
+  mapCategoryId bigint not null,
+  CONSTRAINT refset_extendedmap_pkey PRIMARY KEY(id, effectivetime, active)
+} inherits (refset);
