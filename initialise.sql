@@ -1,4 +1,4 @@
-/* create full set of SNOMED CT international release schema and data */
+﻿/* create full set of SNOMED CT international release schema and data */
 
 drop schema if exists snomedct cascade;
 create schema snomedct;
@@ -21,7 +21,7 @@ create table description(
   conceptid bigint not null,
   languagecode varchar(2) not null,
   typeid bigint not null,
-  term varchar(255) not null,
+  term text not null,
   casesignificanceid bigint not null,
   CONSTRAINT description_pkey PRIMARY KEY(id, effectivetime, active)
 ) INHERITS (sctid);
@@ -36,7 +36,7 @@ create table relationship(
   CONSTRAINT relationship_pkey PRIMARY KEY(id, effectivetime, active)
 ) INHERITS (sctid);
 
-create table stated_relationship(
+create table relationship_stated(
   sourceid bigint not null,
   destinationid bigint not null,
   relationshipgroup integer not null,
@@ -75,12 +75,12 @@ create table refset_simple(
   CONSTRAINT refset_simple_pkey PRIMARY KEY(id, effectivetime, active)
 ) inherits (refset);
 
-create table refset_simplemap(
+create table refset_map_simple(
   maptarget varchar(32) not null,
   CONSTRAINT refset_simplemap_pkey PRIMARY KEY(id, effectivetime, active)
 ) inherits (refset);
 
-create table refset_complexmap(
+create table refset_map_complex(
   mapGroup integer not null,
   mapPriority integer not null,
   mapRule text,
@@ -90,7 +90,7 @@ create table refset_complexmap(
   CONSTRAINT refset_complexmap_pkey PRIMARY KEY(id, effectivetime, active)
 ) inherits (refset);
 
-create table refset_extendedmap{
+create table refset_map_extended(
   mapGroup integer not null,
   mapPriority integer not null,
   mapRule text,
@@ -99,4 +99,4 @@ create table refset_extendedmap{
   correlationId bigint not null,
   mapCategoryId bigint not null,
   CONSTRAINT refset_extendedmap_pkey PRIMARY KEY(id, effectivetime, active)
-} inherits (refset);
+) inherits (refset);
